@@ -11,7 +11,7 @@ x-logging-policy: &logging-policy
 
 services:
   frp_server:
-    image: kal4ek/frp:
+    image: kal4ek/frp:0.42.0
     environment:
       - FRP_SERVER_ADDR
       - FRP_AUTH_TOKEN
@@ -24,7 +24,7 @@ services:
       - ./frps.ini:/etc/frp/frps.ini:ro
 
   frp_client:
-    image: kal4ek/frp:
+    image: kal4ek/frp:0.42.0
     environment:
       - FRP_SERVER_ADDR
       - FRP_AUTH_TOKEN
