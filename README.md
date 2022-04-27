@@ -55,6 +55,16 @@ $ docker run -d --network=host --env FRP_MODE=frps -v /somepath/config:/etc/frp:
 
 when this image runs, it will replace all shell like variables to their environment value, this feature may helps in auto deploy and authority control.
 
+### Start
+
+```bash
+# Server
+docker-compose up -d frp_server
+
+# Client
+docker-compose up -d frp_client
+```
+
 ### An frp server demo
 
 docker-compose.yml

@@ -15,9 +15,3 @@ docker build \
   --build-arg frp_version="$frp_version" \
   --compress \
   .
-
-tee <<EOF
-=========================
-docker push geektr/frp
-=========================
-EOF

@@ -1,0 +1,38 @@
+version: '3.8'
+
+x-restart-policy: &restart-policy
+  restart: unless-stopped
+
+x-logging-policy: &logging-policy
+  logging:
+    options:
+      max-file: "5"
+      max-size: "20m"
+
+services:
+  frp_server:
+    image: geektr/frp
+    environment:
+      - FRP_SERVER_ADDR
+      - FRP_AUTH_TOKEN
+      - FRP_DASHBOARD_PWD
+      - FRP_MODE=frps
+    <<: *restart-policy
+    <<: *logging-policy
+    network_mode: "host"
+    volumes:
+      - ./frps.ini:/etc/frp/frps.ini:ro
+
+  frp_client:
+    image: geektr/frp
+    environment:
+      - FRP_SERVER_ADDR
+      - FRP_AUTH_TOKEN
+      - FRP_MODE=frpc
+    <<: *restart-policy
+    <<: *logging-policy
+    network_mode: "host"
+    volumes:
+      - ./frpc.ini:/etc/frp/frpc.ini:ro
+
+
