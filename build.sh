@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+USERNAME=kail4ek
+
 latest_release_version() {
   curl --silent "https://api.github.com/repos/fatedier/frp/releases/latest" |
     grep '"tag_name":' |
@@ -10,8 +12,10 @@ latest_release_version() {
 frp_version=$(latest_release_version)
 
 docker build \
-  --tag "geektr/frp:$frp_version" \
-  --tag "geektr/frp:latest" \
+  --tag "$USERNAME/frp:$frp_version" \
+  --tag "$USERNAME/frp:latest" \
   --build-arg frp_version="$frp_version" \
   --compress \
   .
+
+docker push --all-tags "$USERNAME/frp"
